@@ -1,0 +1,13 @@
+{
+  "suite": "cross-repo-negative",
+  "passed": 15,
+  "total": 15,
+  "all_passed": true,
+  "limitations": [
+    "Negative suite: success = withhold / reject / no evaluation release.",
+    "Does not fund mainnet or complete LIVE Standing/Vending purchase.",
+    "Standing/Vending may not expose a public evaluate API; absence of an execute bridge is a PASS for deputy isolation.",
+    "Does not re-implement DIP internal 36/56 suites."
+  ],
+  "note": "Full case list in repo CROSS_REPO_VERIFICATION.md; regenerate via cross_repo_negative.py for complete per-case observed fields."
+}
