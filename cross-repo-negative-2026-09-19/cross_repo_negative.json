@@ -3,11 +3,132 @@
   "passed": 15,
   "total": 15,
   "all_passed": true,
+  "cases": [
+    {
+      "id": "XR-01",
+      "name": "DIP discovery example is not a settled live paid evaluation",
+      "passed": true,
+      "expected": "example reachable but not settled paid live evaluation",
+      "observed": "http=200 has_jws_live=False",
+      "http_code": 200
+    },
+    {
+      "id": "XR-02",
+      "name": "Unpaid DIP evaluate withholds evaluation (Standing-shaped evidence)",
+      "passed": true,
+      "expected": "no evaluationReleased; 4xx",
+      "observed": "http=400 released=False",
+      "http_code": 400
+    },
+    {
+      "id": "XR-03",
+      "name": "Forged Standing/DIP headers do not release evaluation",
+      "passed": true,
+      "expected": "evaluationReleased false",
+      "observed": "http=400 released=False",
+      "http_code": 400
+    },
+    {
+      "id": "XR-STANDING-POST-WHPStanding_README",
+      "name": "POST DIP-shaped body to Standing artifact WHPStanding_README does not evaluate",
+      "passed": true,
+      "expected": "no evaluation release",
+      "observed": "GET=200 POST=403 released=False",
+      "http_code": 403
+    },
+    {
+      "id": "XR-STANDING-POST-StandingMark_README",
+      "name": "POST DIP-shaped body to Standing artifact StandingMark_README does not evaluate",
+      "passed": true,
+      "expected": "no evaluation release",
+      "observed": "GET=200 POST=403 released=False",
+      "http_code": 403
+    },
+    {
+      "id": "XR-STANDING-POST-WheelerHubbell_README",
+      "name": "POST DIP-shaped body to Standing artifact WheelerHubbell_README does not evaluate",
+      "passed": true,
+      "expected": "no evaluation release",
+      "observed": "GET=200 POST=403 released=False",
+      "http_code": 403
+    },
+    {
+      "id": "XR-STANDING-POST-WHPStanding_AGENTS",
+      "name": "POST DIP-shaped body to Standing artifact WHPStanding_AGENTS does not evaluate",
+      "passed": true,
+      "expected": "no evaluation release",
+      "observed": "GET=200 POST=403 released=False",
+      "http_code": 403
+    },
+    {
+      "id": "XR-STANDING-POST-StandingMark_AGENTS",
+      "name": "POST DIP-shaped body to Standing artifact StandingMark_AGENTS does not evaluate",
+      "passed": true,
+      "expected": "no evaluation release",
+      "observed": "GET=200 POST=403 released=False",
+      "http_code": 403
+    },
+    {
+      "id": "XR-VENDING-POST-Vending_README",
+      "name": "POST DIP AUTHORIZED body to Vending artifact Vending_README does not evaluate/execute",
+      "passed": true,
+      "expected": "no evaluation/effect release",
+      "observed": "GET=200 POST=403 released=False",
+      "http_code": 403
+    },
+    {
+      "id": "XR-10",
+      "name": "Historical Standing Netlify origin is not a live authority surface",
+      "passed": true,
+      "expected": "404/410 preferred; if 200, must not be silent LIVE",
+      "observed": "http=404 len=50",
+      "http_code": 404
+    },
+    {
+      "id": "XR-11",
+      "name": "DIP JWKS does not advertise ambient Standing authority",
+      "passed": true,
+      "expected": "JWKS present; no ambient Standing claim",
+      "observed": "http=200 standing_claims=False",
+      "http_code": 200
+    },
+    {
+      "id": "XR-12",
+      "name": "All five company repos remain distinct and reachable (no merge into one capability surface)",
+      "passed": true,
+      "expected": "5/5 HTTP 200",
+      "observed": "reachable=5/5",
+      "http_code": null
+    },
+    {
+      "id": "XR-13",
+      "name": "DIP /verification does not claim funded mainnet completion",
+      "passed": true,
+      "expected": "mainnetPurchaseExecuted=false and mainnetSettlementObserved=false",
+      "observed": "purchase=False settlement=False",
+      "http_code": 200
+    },
+    {
+      "id": "XR-14",
+      "name": "Standing README bytes as PAYMENT-SIGNATURE do not release DIP evaluation",
+      "passed": true,
+      "expected": "evaluation withheld",
+      "observed": "http=0 released=False",
+      "http_code": 0
+    },
+    {
+      "id": "XR-15",
+      "name": "Fake Vending entitlement bearer does not release DIP evaluation",
+      "passed": true,
+      "expected": "evaluation withheld",
+      "observed": "http=400 released=False",
+      "http_code": 400
+    }
+  ],
   "limitations": [
     "Negative suite: success = withhold / reject / no evaluation release.",
     "Does not fund mainnet or complete LIVE Standing/Vending purchase.",
     "Standing/Vending may not expose a public evaluate API; absence of an execute bridge is a PASS for deputy isolation.",
     "Does not re-implement DIP internal 36/56 suites."
-  ],
-  "note": "Full case list in repo CROSS_REPO_VERIFICATION.md; regenerate via cross_repo_negative.py for complete per-case observed fields."
+  ]
 }
